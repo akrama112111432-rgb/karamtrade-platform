@@ -1,0 +1,29 @@
+workflows:
+  android-release:
+    name: Android release build
+    environment:
+      vars:
+        FIREBASE_JSON_BASE64:
+          value: ""
+          secure: true
+        OPENAI_API_KEY:
+          value: ""
+          secure: true
+        ADMOB_APP_ID:
+          value: ""
+          secure: true
+    scripts:
+      - name: Prepare google-services.json
+        script: |
+          if [ ! -z "$FIREBASE_JSON_BASE64" ]; then
+            echo "Writing google-services.json from env..."
+            echo $FIREBASE_JSON_BASE64 | base64 --decode > android/app/google-services.json
+          fi
+      - name: Install
+        script: |
+          flutter pub get
+      - name: Build AAB
+        script: |
+          flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/bundle/release/app-release.aab

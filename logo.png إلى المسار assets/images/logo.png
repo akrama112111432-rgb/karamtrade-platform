@@ -1,0 +1,18 @@
+karamtrade-platform/
+├─ lib/
+│  ├─ main.dart
+│  ├─ screens/
+│  │  ├─ home.dart
+│  │  ├─ auth.dart
+│  │  ├─ chat_assistant.dart
+│  │  ├─ challenges.dart
+│  │  └─ videos.dart
+│  └─ services/
+│     ├─ firebase_service.dart
+│     └─ challenges_service.dart
+├─ assets/
+│  └─ images/
+│     └─ logo.png
+├─ pubspec.yaml
+├─ README.md
+└─ android-config/   <-- هنا ترفع google-services.json (شرح أدناه)

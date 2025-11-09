@@ -30,3 +30,4 @@ flutter:
   assets:
     - assets/logo.png
     - assets/icons/
+    chat_gpt_sdk: ^2.2.6

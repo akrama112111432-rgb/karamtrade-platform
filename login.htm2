@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تسجيل الدخول</title>
+  <style>
+    body{
+      font-family: "Cairo", sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      background: linear-gradient(135deg,#2b5876,#4e4376);
+      color:#fff;
+    }
+    .card{
+      background:rgba(255,255,255,0.06);
+      padding:24px;
+      border-radius:12px;
+      width:320px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+      text-align:right;
+    }
+    h2{margin:0 0 12px 0}
+    label{display:block;margin:10px 0 6px}
+    input[type="text"],input[type="password"]{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.03);
+      color:#fff;
+      box-sizing:border-box;
+    }
+    button{
+      margin-top:16px;
+      width:100%;
+      padding:10px;
+      background:#ff7b00;
+      border:none;
+      color:#fff;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:16px;
+    }
+    .small{font-size:13px;margin-top:8px;color:rgba(255,255,255,0.8)}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm" onsubmit="return doLogin(event)">
+      <label for="user">اسم المستخدم أو البريد</label>
+      <input id="user" type="text" placeholder="اكتب اسم المستخدم" required />
+
+      <label for="pass">كلمة المرور</label>
+      <input id="pass" type="password" placeholder="كلمة المرور" required />
+
+      <button type="submit">دخول</button>
+      <div class="small">ليس لديك حساب؟ <a href="index.html" style="color:#ffd7a6">العودة للصفحة الرئيسية</a></div>
+    </form>
+  </div>
+
+  <script>
+    function doLogin(e){
+      e.preventDefault();
+      const u = document.getElementById('user').value.trim();
+      const p = document.getElementById('pass').value.trim();
+
+      // فحص بسيط: لو الحقول ليست فارغة نعتبر تسجيل دخول ناجح (تستبدل بالتحقق الحقيقي لاحقاً)
+      if(u === "" || p === ""){
+        alert('يرجى تعبئة كل الحقول');
+        return false;
+      }
+
+      // هنا يمكنك إضافة تحقق حقيقي عبر API لاحقاً
+      alert('مرحباً ' + u + '، تم تسجيل الدخول (تجريبي)');
+      // بعد تسجيل الدخول تستطيع إعادة التوجيه للصفحة الرئيسية أو لوحة المستخدم:
+      window.location.href = 'index.html';
+      return false;
+    }
+  </script>
+</body>
+</html>

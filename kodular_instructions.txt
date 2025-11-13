@@ -1,0 +1,87 @@
+تعليمات مفصّلة لإنشاء مشروع KaramTrade AI في Kodular
+====================================================
+
+الخطوة A — إنشاء المشروع والصفحات
+1. اذهب إلى Creator ثم Create Project.
+   - Project name: KaramTradeAI
+2. أنشئ الشاشات التالية (Screens):
+   - Screen1 (Splash)
+   - LoginScreen
+   - HomeScreen
+   - TradingScreen
+   - LearnScreen
+   - AIScreen
+   - ChatScreen
+   - ChallengesScreen
+   - ProfileScreen
+   - AdminScreen  (هذا سيكون تطبيق الإدارة لو أردت دمجه؛ أو يمكنك إنشاؤه كمشروع منفصل)
+
+الخطوة B — مكونات عامة (Global components)
+1. في Non-visible components:
+   - FirebaseDB (للحفاظ على بيانات المستخدمين والمحتوى) — اضبط URL وToken لاحقًا.
+   - FirebaseAuth (لتسجيل الدخول بالبريد/OTP) — إن لم يتوفر استخدم Web + APIs.
+   - Web (للاتصال بواجهات API مثل AI، وتحديث الأسعار).
+   - Notifier (لإظهار رسائل).
+   - TinyDB (لتخزين محلي بسيط مثل Token المستخدم).
+   - InAppBilling (للاشتراكات).
+   - AdMobBanner و AdMobInterstitial (للاعلانات).
+   - GoogleSignIn (إن توفر).
+   - TextToSpeech (اختياري).
+   - Translator API (يمكن استخدام Web للتكامل مع خدمة ترجمة).
+
+الخطوة C — إعداد شاشة LoginScreen
+1. ضع:
+   - Labels, TextBox (Email), TextBox (Password), Button (Login), Button (Google Sign-In), Button (Phone OTP)
+2. منطق:
+   - زر Login -> استدعاء FirebaseAuth أو Web للتحقق من الحساب.
+   - زر Google -> استخدام GoogleSignIn.
+   - زر Phone OTP -> إرسال رمز عبر Firebase (إن استخدمت FirebaseAuth).
+
+الخطوة D — إعداد HomeScreen
+1. مكونات:
+   - Label (BalanceDemo) لعرض الرصيد التجريبي.
+   - ListView أو RecycleView لعرض أصول (BTC, ETH, GOLD...).
+   - Buttons: Learn, AI Chat, Community, Challenges, Profile.
+2. عند الضغط على أي أصل -> افتح TradingScreen مع تمرير الزوج (pair).
+
+الخطوة E — شاشة TradingScreen (محاكاة)
+1. مكونات:
+   - Canvas أو Chart component (إذا توفر) لعرض سعر وهمي / رسومي.
+   - Buttons: Buy, Sell, Close Position.
+   - Labels لعرض السعر الحالي، الربح/الخسارة.
+2. منطق المحاكاة:
+   - استخدم Web component لجلب أسعار من API مجاني (مثل CoinGecko أو AlphaVantage) كل 5-10 ثواني.
+   - تحديث الرسم البياني والـ BalanceDemo عند فتح/إغلاق الصفقات.
+
+الخطوة F — شاشة AIScreen
+1. مكونات:
+   - TextBox (للسؤال)، Button (Send)، Scrollable Arrangement لعرض المحادثة.
+   - Web component لاستدعاء API الذكاء الصناعي (مثلاً واجهة OpenAI أو أي خدمة أخرى).
+2. منطق:
+   - عند الضغط Send -> ترسل السؤال إلى Web (POST)، وتعرض الرد في المحادثة.
+   - تطبيق عداد للرسائل المجانية (TinyDB يحفظ عدد الرسائل المستخدمة).
+
+الخطوة G — ChatScreen
+1. مكونات:
+   - ListView لعرض الغرف.
+   - لكل غرفة، فتح شاشة فرعية بسيطة تستخدم FirebaseDB لتخزين الرسائل.
+   - إضافة خاصية الترجمة عبر Web API إن أردت.
+
+الخطوة H — ChallengesScreen
+1. مكونات:
+   - List of active tournaments.
+   - زر Join (يعطي المستخدم مبلغ تجريبي ويحسَب الأداء).
+2. بيانات المسابقات تخزن في FirebaseDB (leaderboard).
+
+الخطوة I — Profile & Subscriptions
+1. ربط InAppBilling لإدارة الاشتراكات.
+2. في AdminScreen تستطيع تغيير الأسعار وتمكين/تعطيل محتوى المدفوع.
+
+الخطوة J — ربط AdMob
+1. أنشئ حساب AdMob وربط الوحدة الإعلانية (Banner وInterstitial).
+2. أضف AdMob components وادخل الـ Ad Unit IDs في الخصائص.
+
+الخطوة K — اختبار وتصدير
+1. احفظ المشروع وارَاه عبر Kodular Companion Preview.
+2. عندما تكون جاهزًا: Build -> APK (أو AAB إذا توفر).
+3. اختبر على جهازك ثم انشر إلى متاجر بديلة (APKPure، Aptoide) أو Google Play (بعد تسجيل Google Developer).

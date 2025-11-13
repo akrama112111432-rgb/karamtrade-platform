@@ -1,0 +1,73 @@
+منطق البلوكات (Blocks) - وصف تفصيلي للتنفيذ
+
+1) Splash -> Login
+- Clock1.Timer (بعد 2000 ms):
+    open another screen "LoginScreen"
+
+2) تسجيل الدخول (Email + Password) باستخدام FirebaseAuth أو Web:
+- ButtonLogin.Click:
+    if EmailTextBox.Text = "" or PasswordTextBox.Text = "":
+        Notifier.ShowMessage("أكمل البيانات")
+    else:
+        call FirebaseAuth.SignInWithEmailAndPassword(EmailTextBox.Text, PasswordTextBox.Text)
+        when FirebaseAuth.GotSignInResult(success, uid):
+            if success:
+                TinyDB.StoreValue("user_uid", uid)
+                open screen "HomeScreen"
+            else:
+                Notifier.ShowMessage("فشل تسجيل الدخول")
+
+3) Google Sign-In:
+- ButtonGoogle.Click -> call GoogleSignIn.SignIn
+- when GoogleSignIn.GotSignIn -> Store token and open HomeScreen
+
+4) جلب أسعار السوق (Web + Clock):
+- Clock_Tick every 5000 ms:
+    call Web.Get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd")
+- when Web.GotText:
+    parse JSON -> update ListView items and Labels
+
+5) فتح مركز التداول (محاكاة):
+- ListView.AfterPicking:
+    set global current_pair = ListView.Selection
+    open screen "TradingScreen" with start value current_pair
+
+6) Buy / Sell (محاكاة):
+- ButtonBuy.Click:
+    create trade object {pair: current_pair, side: "buy", entry_price: current_price, size: demo_size}
+    store in TinyDB "open_trades"
+    update BalanceDemo = BalanceDemo - (size)
+- ButtonClose.Click:
+    calculate pnl = (current_price - entry_price) * size (or حسب نوع العقد)
+    update BalanceDemo = BalanceDemo + pnl
+    remove trade from open_trades
+
+7) AI Chat (Web to AI API):
+- ButtonSend.Click:
+    if TinyDB.GetValue("ai_messages_count") >= 60 and not user_is_subscriber:
+        Notifier.ShowMessage("وصلت الحد المجاني، اشترك للمزيد")
+    else:
+        call Web.PostText(URL=AI_API, Body={prompt: InputTextBox.Text, user_id: TinyDB.GetValue("user_uid")})
+- when Web.GotText:
+    display response in Chat area
+    increment TinyDB ai_messages_count
+
+8) الاشتراكات (InAppBilling):
+- ButtonSubscribe.Click:
+    call InAppBilling.PurchaseProduct(ProductId)
+- when InAppBilling.PurchaseComplete:
+    verify receipt (optionally عبر Web server) then:
+    mark TinyDB "is_subscriber" = true
+    unlock premium content
+
+9) Chat rooms (FirebaseDB):
+- ChatRoomScreen:
+    when user sends message:
+        FirebaseDB.StoreValue(tag=room_id/timestamp, value={user: uid, text: message, lang: user_lang})
+    FirebaseDB.WhenValueChanged:
+        update Messages list (real-time chat)
+
+10) Admin control:
+- AdminScreen.ButtonAddCourse.Click:
+    open a form to upload course metadata -> store in FirebaseDB under "courses"
+- AdminScreen.ManageSubscriptions -> view list from FirebaseDB

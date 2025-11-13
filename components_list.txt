@@ -1,0 +1,64 @@
+قائمة المكونات (Components) لكل شاشة - ملخّص
+
+Global (non-visible):
+- FirebaseDB
+- FirebaseAuth (إن أمكن)
+- Web
+- TinyDB
+- Notifier
+- InAppBilling
+- AdMobBanner
+- AdMobInterstitial
+- GoogleSignIn (اختياري)
+- Clock (للتحديث الدوري)
+- Location (اختياري)
+- File (لتخزين محلي)
+
+Screen1 (Splash):
+- Image (logo)
+- Clock (Timer) -> بعد 2-3s افتح LoginScreen
+
+LoginScreen:
+- Label (AppName)
+- TextBox Email
+- TextBox Password
+- Button Login
+- Button GoogleSignIn
+- Button PhoneOTP
+
+HomeScreen:
+- Label BalanceDemo
+- RecycleView / ListView للأصول
+- Buttons: Learn, AI Chat, Community, Challenges, Profile
+
+TradingScreen:
+- Canvas أو Chart
+- Buttons: Buy, Sell, Close
+- Labels: Price, P/L, Time
+
+LearnScreen:
+- VerticalScrollArrangement
+- List of courses (Image + Title + Button Play)
+
+AIScreen:
+- ScrollableArrangement (Chat area)
+- TextBox (Input)
+- Button Send
+- Label for AI usage count
+
+ChatScreen:
+- ListView (Rooms)
+- ChatRoomScreen (Messages stored in FirebaseDB)
+
+ChallengesScreen:
+- List of challenges
+- Join Button
+
+ProfileScreen:
+- Label UserEmail
+- Button Subscribe
+- Button Logout
+
+AdminScreen (Control):
+- Labels: ActiveUsers, Subscriptions, RevenueEstimate
+- Buttons: AddCourse, PushNotification, ManageUsers

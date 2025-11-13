@@ -1,33 +1,140 @@
-<!DOCTYPE html>
-<html lang="ar">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الصفحة الرئيسية - منصة كرم تريد</title>
-  <style>
-    body {
-      font-family: "Cairo", sans-serif;
-      background: linear-gradient(to right, #4e4376, #2b5876);
-      color: white;
-      text-align: center;
-      padding-top: 50px;
-    }
-    button {
-      background: #ff7b00;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Karam Trade — Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+  <meta name="description" content="Dark modern trading demo — multi-language (EN/AR/FR/TR)">
 </head>
-<body>
-  <h1>👋 مرحباً بك في منصة كرم تريد</h1>
-  <p>اضغط على الزر أدناه لتسجيل الدخول إلى حسابك</p>
+<body class="theme-dark">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">K🔷</div>
+      <div class="title"><span class="title-main">Karam Trade</span> <small class="subtitle">Demo</small></div>
+    </div>
+    <div class="controls">
+      <select id="lang" aria-label="Language select">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="tr">Türkçe</option>
+      </select>
+      <button id="themeBtn" title="Toggle theme">🌙</button>
+    </div>
+  </header>
 
-  <!-- الزر الذي ينقلك لصفحة تسجيل الدخول -->
-  <button onclick="window.location.href='login.html'">تسجيل الدخول</button>
+  <main class="container">
+    <section class="hero">
+      <h1 data-i18n="heroTitle">Trade easily — Demo interface</h1>
+      <p data-i18n="heroSubtitle">Dark, fast, and modern trading mockup — built to look pro.</p>
+      <div class="cta">
+        <button id="openTrade" class="btn primary" data-i18n="ctaStart">Start Demo Trade</button>
+        <a id="downloadZip" class="btn ghost" href="#" data-i18n="ctaDownload">Download ZIP</a>
+      </div>
+    </section>
+
+    <section class="dashboard" aria-label="Trading dashboard">
+      <div class="card">
+        <h3 data-i18n="wallet">Demo Balance</h3>
+        <div class="big" id="balance">$1,000</div>
+      </div>
+
+      <div class="card stats">
+        <h3 data-i18n="stats">Statistics</h3>
+        <div class="row"><span data-i18n="profit">Profit %</span><strong id="profit">-1.30%</strong></div>
+        <div class="row"><span data-i18n="currency">Currency</span><strong id="currency">USD</strong></div>
+      </div>
+
+      <div class="card trade">
+        <h3 data-i18n="tradeQuick">Quick Orders</h3>
+        <div class="switches">
+          <button id="buyBtn" class="btn">Buy</button>
+          <button id="sellBtn" class="btn ghost">Sell</button>
+        </div>
+        <div class="form">
+          <label data-i18n="amount">Amount</label>
+          <input id="amount" type="number" value="100" min="1" />
+          <button id="runTrade" class="btn primary" data-i18n="runTrade">Run Trade</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="log card">
+      <h3 data-i18n="activity">Activity Log</h3>
+      <div id="logArea" class="log-area" aria-live="polite">—</div>
+    </section>
+
+    <footer class="footer card">
+      <small data-i18n="footer">© Karam Trade — Demo. Built with ❤️</small>
+    </footer>
+  </main>
+
+  <!-- simple translations -->
+  <script id="translations" type="application/json">
+  {
+    "en": {
+      "heroTitle":"Trade easily — Demo interface",
+      "heroSubtitle":"Dark, fast, and modern trading mockup — built to look pro.",
+      "ctaStart":"Start Demo Trade",
+      "ctaDownload":"Download ZIP",
+      "wallet":"Demo Balance",
+      "stats":"Statistics",
+      "profit":"Profit %",
+      "currency":"Currency",
+      "tradeQuick":"Quick Orders",
+      "amount":"Amount",
+      "runTrade":"Run Trade",
+      "activity":"Activity Log",
+      "footer":"© Karam Trade — Demo. Built with ❤️"
+    },
+    "ar": {
+      "heroTitle":"تداول بسهولة — واجهة تجريبية",
+      "heroSubtitle":"واجهة داكنة حديثة وسريعة لتجربة تداول جذابة.",
+      "ctaStart":"ابدأ صفقة تجريبية",
+      "ctaDownload":"تحميل ملف ZIP",
+      "wallet":"الرصيد التجريبي",
+      "stats":"إحصائيات",
+      "profit":"نسبة الربح",
+      "currency":"العملة",
+      "tradeQuick":"أوامر سريعة",
+      "amount":"المبلغ",
+      "runTrade":"تشغيل صفقة",
+      "activity":"سجل النشاط",
+      "footer":"© منصة كرم للتجارة — تجريبي. صنع بحب"
+    },
+    "fr": {
+      "heroTitle":"Tradez facilement — Démo",
+      "heroSubtitle":"Interface sombre, rapide et moderne pour trading.",
+      "ctaStart":"Commencer la démo",
+      "ctaDownload":"Télécharger ZIP",
+      "wallet":"Solde démo",
+      "stats":"Statistiques",
+      "profit":"% de profit",
+      "currency":"Devise",
+      "tradeQuick":"Ordres rapides",
+      "amount":"Montant",
+      "runTrade":"Exécuter",
+      "activity":"Journal d'activité",
+      "footer":"© Karam Trade — Démo. Construit avec ❤️"
+    },
+    "tr": {
+      "heroTitle":"Kolayca ticaret — Demo arayüzü",
+      "heroSubtitle":"Koyu, hızlı ve modern ticaret arayüzü.",
+      "ctaStart":"Demo işlemi başlat",
+      "ctaDownload":"ZIP indir",
+      "wallet":"Demo Bakiye",
+      "stats":"İstatistikler",
+      "profit":"Kâr %",
+      "currency":"Para birimi",
+      "tradeQuick":"Hızlı Emirler",
+      "amount":"Tutar",
+      "runTrade":"İşlemi Başlat",
+      "activity":"Etkinlik Günlüğü",
+      "footer":"© Karam Trade — Demo. ❤️ ile hazırlandı"
+    }
+  }
+  </script>
 </body>
 </html>

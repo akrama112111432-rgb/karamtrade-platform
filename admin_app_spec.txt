@@ -1,0 +1,26 @@
+KaramTrade Control - مواصفات تطبيق الإدارة (Admin)
+
+الهدف:
+تطبيق/شاشة خاصة للمالك فقط لإدارة المحتوى، المشتركين، والإحصاءات.
+
+شاشات ووحدات رئيسية:
+1. Login (Owner) - دخول برمز فريد أو OTP.
+2. Dashboard:
+   - Active Users (عدد)
+   - Subscriptions (عدد ونوع)
+   - Revenue Estimate (مؤشر تقريبي)
+3. Content Manager:
+   - Add Course (عنوان، وصف، فيديو URL، صورة)
+   - Edit/Delete Course
+4. Notifications:
+   - Send Push Notification (title, message, target segment)
+5. Users:
+   - قائمة بالمستخدمين، إمكانية حظر أو تفعيل
+6. Settings:
+   - تغيير أسعار الاشتراك
+   - تفعيل/تعطيل الإعلانات
+
+تقنيات:
+- يستخدم FirebaseDB لتخزين وإدارة المحتوى.
+- يرسل Notifications عبر Firebase Cloud Messaging (FCM).
+- الوصول محمي بمفتاح خاص محفوظ في TinyDB أو عبر Authentication في Firebase.

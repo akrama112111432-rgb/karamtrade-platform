@@ -1,0 +1,1 @@
+Run: npm install && npm run dev (use Vite)

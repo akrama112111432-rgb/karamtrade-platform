@@ -1,0 +1,1 @@
+Put your logo.png and background.jpg in this folder. Replace with your images.

@@ -1,0 +1,1 @@
+Open App.js and replace API_BASE with your deployed server URL. Use `expo start` to run.

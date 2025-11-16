@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>منصة كرم تريد — منصة تداول</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">كرم تريد<span class="dot">●</span></div>
+      <nav class="nav">
+        <a href="#features">المزايا</a>
+        <a href="#plans">الباقات</a>
+        <a href="#contact">تواصل</a>
+        <button id="openLogin" class="btn small">تسجيل الدخول</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>منصة تداول ذكية وسهلة</h1>
+          <p>تداول بذكاء، تعلّم، وادِر محفظتك. واجهة سهلة وسريعة للعملاء.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#plans">ابدأ الآن</a>
+            <button class="btn ghost" id="learnMore">المزيد</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card">
+            <h3>قائمة سوق سريعة</h3>
+            <ul class="ticker">
+              <li>EUR/USD <span class="price">1.0923</span></li>
+              <li>BTC/USD <span class="price">63,200</span></li>
+              <li>ETH/USD <span class="price">3,800</span></li>
+            </ul>
+            <button class="btn small full" id="tradeNow">تداول الآن</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container features">
+      <h2>مزايا منصتنا</h2>
+      <div class="grid">
+        <div class="feature">
+          <h4>واجهة سهلة</h4>
+          <p>لوحة تحكم بسيطة وسهلة للاستخدام للمبتدئين والمحترفين.</p>
+        </div>
+        <div class="feature">
+          <h4>تنبيهات ذكية</h4>
+          <p>تنبيهات لحظية على الصفقات والفرص المهمة.</p>
+        </div>
+        <div class="feature">
+          <h4>حماية متقدمة</h4>
+          <p>تشفير وممارسات أمان لحفظ أموالك وبياناتك.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans" class="container plans">
+      <h2>باقاتنا</h2>
+      <div class="grid-3">
+        <div class="plan">
+          <h3>مجاني</h3>
+          <p class="price">0$ / شهرياً</p>
+          <ul>
+            <li>حساب تجريبي</li>
+            <li>تنبيهات محدودة</li>
+          </ul>
+          <button class="btn" onclick="alert('تم اختيار الخطة المجانية')">اختر</button>
+        </div>
+        <div class="plan popular">
+          <h3>احترافي</h3>
+          <p class="price">9$ / شهرياً</p>
+          <ul>
+            <li>تنبيهات كاملة</li>
+            <li>واجهة متقدمة</li>
+          </ul>
+          <button class="btn" onclick="alert('تم اختيار باقة الاحترافي')">اختر</button>
+        </div>
+        <div class="plan">
+          <h3>مؤسسي</h3>
+          <p class="price">49$ / شهرياً</p>
+          <ul>
+            <li>دعم مخصص</li>
+            <li>تقارير متقدمة</li>
+          </ul>
+          <button class="btn" onclick="alert('تم اختيار باقة المؤسسي')">اختر</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h2>تواصل معنا</h2>
+      <p>للاستفسارات أو الدعم ارسل رسالة:</p>
+      <form id="contactForm" onsubmit="submitContact(event)">
+        <input type="text" id="name" placeholder="الاسم" required />
+        <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+        <textarea id="message" placeholder="رسالتك..." rows="4" required></textarea>
+        <button class="btn" type="submit">أرسل</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> كرم تريد</div>
+      <div class="foot-links">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-inner">
+      <h3>تسجيل الدخول</h3>
+      <form id="loginForm" onsubmit="login(event)">
+        <input type="text" id="user" placeholder="اسم المستخدم" required />
+        <input type="password" id="pass" placeholder="كلمة المرور" required />
+        <div class="row">
+          <button class="btn" type="submit">دخول</button>
+          <button type="button" class="btn ghost" onclick="closeModal()">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

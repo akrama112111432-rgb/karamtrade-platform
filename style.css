@@ -1,43 +1,45 @@
-/* Dark, modern minimal styles */
-:root{
-  --bg:#0d0d0f;--panel:#0f1214;--muted:#9aa3ad;--accent1:#7c4dff;--accent2:#00d4ff;
-  --glass: rgba(255,255,255,0.03);
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+sendBtn.addEventListener("click", sendMessage);
+userInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+  const text = userInput.value.trim();
+  if (text === "") return;
+
+  addMessage(text, "user");
+  userInput.value = "";
+
+  setTimeout(() => {
+    const reply = getAIResponse(text);
+    addMessage(reply, "bot");
+  }, 600);
 }
-*{box-sizing:border-box}
-body{font-family:Inter, 'Cairo', system-ui, -apple-system, sans-serif;margin:0;background:linear-gradient(180deg,var(--bg),#070708);color:#e9eef6;min-height:100vh}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:linear-gradient(90deg,rgba(124,77,255,0.08),rgba(0,212,255,0.03));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(45deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#041;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
-.title-main{font-weight:700;font-size:16px}
-.subtitle{display:block;color:var(--muted);font-size:12px}
-.controls{display:flex;gap:8px;align-items:center}
-.controls select{background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;padding:6px 8px;border-radius:8px}
-#themeBtn{background:transparent;border:0;color:inherit;padding:8px;font-size:16px;border-radius:8px}
 
-.container{max-width:1000px;margin:26px auto;padding:0 18px;display:grid;grid-template-columns:1fr;gap:18px}
-.hero{padding:22px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
-.hero h1{margin:0 0 8px;font-size:20px}
-.hero p{margin:0;color:var(--muted)}
-
-.btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;cursor:pointer}
-.btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;color:#0c0d10;box-shadow:0 8px 30px rgba(124,77,255,0.12)}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-
-.dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card{padding:14px;border-radius:12px;background:var(--panel);border:1px solid rgba(255,255,255,0.02)}
-.big{font-size:22px;font-weight:700;margin-top:8px}
-.stats .row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px dashed rgba(255,255,255,0.02);color:var(--muted)}
-
-.trade .switches{display:flex;gap:8px;margin-bottom:10px}
-.trade input{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-
-.log-area{min-height:80px;border-radius:8px;padding:10px;background:rgba(0,0,0,0.12);color:var(--muted)}
-
-.footer{display:flex;justify-content:center;padding:18px;color:var(--muted);text-align:center}
-
-/* responsive */
-@media (max-width:900px){
-  .dashboard{grid-template-columns:1fr;align-items:start}
-  .container{padding:0 14px}
-  .logo{width:38px;height:38px}
+function addMessage(text, sender) {
+  const msg = document.createElement("div");
+  msg.classList.add(sender);
+  msg.textContent = text;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+function getAIResponse(input) {
+  input = input.toLowerCase();
+  
+  if (input.includes("مرحبا") || input.includes("اهلا")) {
+    return "أهلاً بك! 👋 كيف أستطيع خدمتك اليوم؟";
+  } else if (input.includes("اسمك")) {
+    return "أنا المساعد الذكي الخاص بك 🤖";
+  } else if (input.includes("توقيت") || input.includes("الوقت")) {
+    return "الوقت الآن هو: " + new Date().toLocaleTimeString("ar-YE");
+  } else if (input.includes("تاريخ")) {
+    return "التاريخ اليوم هو: " + new Date().toLocaleDateString("ar-YE");
+  } else {
+    return "ممم 🤔 لست متأكدًا، لكني أتعلم كل يوم! حاول سؤال آخر.";
+  }
+    }

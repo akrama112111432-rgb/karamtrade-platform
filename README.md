@@ -1,18 +1,28 @@
-# karamtrade-platform
-تطبيق تداول ذكي يعمل بالذكاء الاصطناعي من تصميم كرم.
-karam-trade-platform/
-├── lib/
-│   ├── main.dart
-│   ├── screens/
-│   │   ├── splash_screen.dart
-│   │   ├── login_screen.dart
-│   │   ├── dashboard.dart
-│   │   ├── chat_ai.dart
-│   │   └── competition_screen.dart
-│   └── services/
-│       └── ai_service.dart
-├── assets/
-│   ├── logo.png
-│   └── icons/
-├── pubspec.yaml
-└── README.md
+KaramTrade AI - حزمة المشروع الجاهزة للـ Kodular
+===============================================
+
+محتويات الحزمة:
+- README.md (هذا الملف)
+- kodular_instructions.txt  --> تعليمات تفصيلية لإعداد المشروع في Kodular خطوة بخطوة.
+- components_list.txt      --> قائمة بالمكونات (Components) التي يجب إضافتها لكل شاشة.
+- blocks_logic.txt         --> كود البلوكات (Blocks) بالوصف التفصيلي لتطبيق الوظائف الرئيسية.
+- playstore_listing.txt    --> نص وصف المتجر، العنوان، الكلمات المفتاحية.
+- privacy_policy.txt       --> نموذج سياسة الخصوصية لتضعه في متجر التطبيقات.
+- admin_app_spec.txt       --> مواصفات تطبيق الإدارة KaramTrade Control.
+- assets_instructions.txt  --> تعليمات وأسماء الملفات المطلوبة للشعار والأيقونة وصور المتجر.
+
+كيفية الاستخدام (ملخّص):
+1. افتح موقع Kodular: https://creator.kodular.io وسجّل دخولك بحساب Google.
+2. أنشئ مشروعًا جديدًا باسم: KaramTradeAI
+3. اتبع ملف kodular_instructions.txt لإضافة الشاشات والمكونات وضبط الخصائص.
+4. انسخ البلوكات من blocks_logic.txt (النصوص شرحية) وطبقها في محرر البلوكات داخل Kodular.
+5. جهز صور الشعار والأيقونة بحسب التعليمات في assets_instructions.txt.
+6. قم بربط AdMob و In-App Billing و Firebase حسب التعليمات في الملف الخاص بها.
+7. جرّب التطبيق عبر Preview ثم صدّر APK أو AAB.
+
+ملاحظات هامة:
+- هذا التطبيق مصمم كـ \"منصة تعليمية ومحاكاة\" لتداول، **وليس منصة تداول بأموال حقيقية**. لا تضف أي نظام لمعالجة أموال أو تنفيذ أوامر في أسواق حقيقية بدون تراخيص قانونية.
+- لربح من التطبيق الآن: استخدم AdMob، اشتراكات داخل التطبيق، وشحن عملات افتراضية.
+- عندما تريد نشره على Google Play لاحقًا، سيتطلب حساب Google Developer (رسوم 25$) وبعض الإعدادات.
+
+بالتوفيق! إذا رغبت أستطيع توليد صور الشعار والأيقونة لك لاحقًا أو شرح عملي خطوة بخطوة أثناء قيامك بالتنفيذ داخل Kodular.
